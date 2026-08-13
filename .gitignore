@@ -1,0 +1,25 @@
+# This repository lives at ~/.config, where applications continuously create
+# caches, credentials, databases, logs, and other machine-local state. Ignore
+# every top-level entry unless it is intentionally managed below.
+/*
+
+!/.gitignore
+!/.aerospace.toml
+!/fish/
+!/herdr/
+!/karabiner/
+!/nix/
+!/nvim/
+!/remote/
+
+# Machine-generated state inside otherwise managed config directories.
+**/.DS_Store
+/fish/completions/
+/fish/conf.d/fish_frozen_key_bindings.fish
+/fish/fish_variables
+/fish/functions/
+/herdr/.plugins.lock
+/herdr/*.log
+/herdr/release-notes.json
+/herdr/session.json
+/karabiner/automatic_backups/
