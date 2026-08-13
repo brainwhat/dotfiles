@@ -1,0 +1,41 @@
+2026-07-31T08:59:03.547624Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=69428
+2026-07-31T08:59:03.547686Z  INFO herdr::client: connecting to server path=/Users/vasilijfrolov/.config/herdr/herdr-client.sock
+2026-07-31T08:59:03.571696Z  INFO herdr::client: handshake succeeded version=17 encoding=SemanticFrame
+2026-07-31T09:03:32.942057Z  INFO herdr::logging: herdr exiting event="app.shutdown" subsystem="client" outcome="completed" pid=69428
+2026-07-31T09:03:36.860781Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=70821
+2026-07-31T09:03:36.860996Z  INFO herdr::client: connecting to server path=/Users/vasilijfrolov/.config/herdr/herdr-client.sock
+2026-07-31T09:03:37.016096Z  INFO herdr::client: handshake succeeded version=17 encoding=SemanticFrame
+2026-07-31T09:03:53.957035Z  INFO herdr::logging: herdr exiting event="app.shutdown" subsystem="client" outcome="completed" pid=70821
+2026-07-31T09:03:56.831776Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=70906
+2026-07-31T09:03:56.831825Z  INFO herdr::client: connecting to server path=/Users/vasilijfrolov/.config/herdr/herdr-client.sock
+2026-07-31T09:03:57.022541Z  INFO herdr::client: handshake succeeded version=17 encoding=SemanticFrame
+2026-07-31T10:33:27.284596Z  INFO herdr::logging: herdr exiting event="app.shutdown" subsystem="client" outcome="completed" pid=70906
+2026-07-31T10:33:29.556609Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=93796
+2026-07-31T10:33:29.556674Z  INFO herdr::client: connecting to server path=/Users/vasilijfrolov/.config/herdr/herdr-client.sock
+2026-07-31T10:33:29.582087Z  INFO herdr::client: handshake succeeded version=17 encoding=SemanticFrame
+2026-08-01T21:57:35.729811Z  INFO herdr::logging: herdr exiting event="app.shutdown" subsystem="client" outcome="completed" pid=93796
+2026-08-01T22:13:39.553979Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=1883
+2026-08-01T22:13:39.554147Z  INFO herdr::client: connecting to server path=/Users/vasilijfrolov/.config/herdr/herdr-client.sock
+2026-08-01T22:13:39.562261Z  INFO herdr::client: handshake succeeded version=17 encoding=SemanticFrame
+2026-08-05T11:47:10.584342Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=60629
+2026-08-05T11:47:10.584613Z  INFO herdr::client: connecting to server path=/Users/vasilijfrolov/.config/herdr/herdr-client.sock
+2026-08-05T11:47:10.636949Z  INFO herdr::client: handshake succeeded version=17 encoding=SemanticFrame
+2026-08-05T11:48:39.603849Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=63074
+2026-08-05T11:48:39.604836Z  INFO herdr::client: connecting to server path=/Users/vasilijfrolov/.config/herdr/herdr-client.sock
+2026-08-05T11:48:39.689121Z  INFO herdr::client: handshake succeeded version=17 encoding=SemanticFrame
+2026-08-12T10:52:45.699792Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=48226
+2026-08-12T10:52:45.700598Z  INFO herdr::client: connecting to server path=/Users/vasilijfrolov/.config/herdr/herdr-client.sock
+2026-08-12T10:52:45.952663Z  INFO herdr::client: handshake succeeded version=17 encoding=SemanticFrame
+2026-08-12T15:21:07.808112Z  WARN herdr::sound: sound playback failed sound=Done err=player exited with exit status: 1
+2026-08-13T09:44:36.099645Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=43058
+2026-08-13T09:44:36.100221Z  INFO herdr::client: connecting to server path=/Users/vasilijfrolov/.config/herdr/herdr-client.sock
+2026-08-13T09:44:36.332916Z  INFO herdr::client: handshake succeeded version=17 encoding=SemanticFrame
+2026-08-13T12:38:43.821733Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=89317
+2026-08-13T12:38:43.822247Z  INFO herdr::client: connecting to server path=/Users/vasilijfrolov/.config/herdr/herdr-client.sock
+2026-08-13T12:38:43.967809Z  INFO herdr::client: handshake succeeded version=17 encoding=SemanticFrame
+2026-08-13T12:44:43.884777Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=91193
+2026-08-13T12:44:43.884979Z  INFO herdr::client: connecting to server path=/var/folders/68/f946ml7d74g76c35qfdc8jbm0000gn/T/herdr-remote-91140-AlphaVPS4G-default.sock
+2026-08-13T12:44:44.174472Z  INFO herdr::client: handshake succeeded version=17 encoding=TerminalAnsi
+2026-08-13T12:45:00.663130Z  INFO herdr::client: clipboard image paste trigger received, but local clipboard has no image
+2026-08-13T12:45:07.607424Z  INFO herdr::client: clipboard image paste trigger received, but local clipboard has no image
+2026-08-13T12:45:08.204126Z  INFO herdr::logging: herdr exiting event="app.shutdown" subsystem="client" outcome="completed" pid=91193
