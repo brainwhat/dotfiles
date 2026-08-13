@@ -412,7 +412,18 @@ require('lazy').setup({
         --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
         --   },
         -- },
-        -- pickers = {}
+        defaults = {
+          file_ignore_patterns = { '%.git/', 'venv/', '%.venv/', '.vagrant/' },
+        },
+        pickers = {
+          find_files = {
+            hidden = true,
+            no_ignore = true,
+          },
+          live_grep = {
+            additional_args = { '--hidden', '--no-ignore' },
+          },
+        },
         extensions = {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
@@ -946,8 +957,34 @@ require('lazy').setup({
   },
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
+    branch = 'master',
     build = ':TSUpdate',
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts
+    -- The `master` branch is frozen at v0.10.0 and registers its query directives with
+    -- `{ all = false }`, expecting `match[id]` to be a single TSNode. Neovim 0.12 dropped
+    -- that compat option, so handlers now receive a TSNode[] and fail inside
+    -- get_node_text ("attempt to call method 'range' (a nil value)") on markdown code
+    -- fences, `<script type=...>` and bash heredocs. Restore the unwrapping ourselves.
+    init = function()
+      local tsq = require 'vim.treesitter.query'
+      for _, fname in ipairs { 'add_directive', 'add_predicate' } do
+        local orig = tsq[fname]
+        ---@diagnostic disable-next-line: assign-type-mismatch
+        tsq[fname] = function(name, handler, opts)
+          if type(opts) == 'table' and opts.all == false then
+            local inner = handler
+            handler = function(match, pattern, source, pred, metadata)
+              local single = {}
+              for id, nodes in pairs(match) do
+                single[id] = type(nodes) == 'table' and nodes[#nodes] or nodes
+              end
+              return inner(single, pattern, source, pred, metadata)
+            end
+          end
+          return orig(name, handler, opts)
+        end
+      end
+    end,
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     opts = {
       ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
