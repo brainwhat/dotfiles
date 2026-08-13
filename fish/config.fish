@@ -2,6 +2,13 @@
 # macOS and Linux.
 fish_add_path "$HOME/.local/bin"
 
+# GUI-launched macOS terminals can start with only Apple's system PATH, which
+# omits Homebrew even though its commands are installed. Add the standard
+# Apple Silicon location explicitly; the directory does not exist on the VPS.
+if test (uname) = Darwin; and test -d /opt/homebrew/bin
+    fish_add_path /opt/homebrew/bin /opt/homebrew/sbin
+end
+
 # Nix installs user-profile commands here. The directory is absent on hosts
 # where Nix is not installed, so checking it keeps this config portable.
 if test -d "$HOME/.nix-profile/bin"
