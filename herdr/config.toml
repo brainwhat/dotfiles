@@ -84,7 +84,7 @@ height = "100%"
 
 [ui]
 # Sidebar width (auto-scaled based on workspace names, this sets the default)
-sidebar_width = 1
+sidebar_width = 15
 
 # Minimum sidebar width when expanded (columns)
 sidebar_min_width = 1
