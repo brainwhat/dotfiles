@@ -19,10 +19,12 @@ end
 # this choice away from universal state, so do not rely on the machine-local
 # fish_variables file.
 set --erase --universal fish_key_bindings
+set --global fish_key_bindings fish_vi_key_bindings
 
 if status is-interactive
     # Set the variable and install Fish's default/insert/visual vi key maps in
-    # this shell. Merely assigning fish_key_bindings does not initialize them.
+    # this shell. Fish 3.x needs both steps in this order; merely assigning the
+    # selector does not initialize the maps.
     fish_vi_key_bindings
 
     # Suppress the "Welcome to fish..." startup greeting.
