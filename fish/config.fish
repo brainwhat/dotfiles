@@ -49,6 +49,15 @@ if status is-interactive
     command -q eza; and alias ls=eza
     command -q bat; and alias cat=bat
 
+    # Keep Codex in the terminal's normal screen buffer. This lets Ghostty and
+    # Herdr scroll the conversation instead of sending wheel events to Codex's
+    # prompt history.
+    if command -q codex
+        function codex --wraps codex --description 'Run Codex with terminal scrollback'
+            command codex --no-alt-screen $argv
+        end
+    end
+
     if command -q nvim
         alias vim=nvim
         alias vi=nvim
