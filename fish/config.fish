@@ -15,7 +15,16 @@ if test -d "$HOME/.nix-profile/bin"
     fish_add_path "$HOME/.nix-profile/bin"
 end
 
+# Keep Fish's command-line editor in vi mode on every host. Fish 4.3 moved
+# this choice away from universal state, so do not rely on the machine-local
+# fish_variables file.
+set --erase --universal fish_key_bindings
+
 if status is-interactive
+    # Set the variable and install Fish's default/insert/visual vi key maps in
+    # this shell. Merely assigning fish_key_bindings does not initialize them.
+    fish_vi_key_bindings
+
     # Suppress the "Welcome to fish..." startup greeting.
     set -g fish_greeting
 
