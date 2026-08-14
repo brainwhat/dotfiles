@@ -4,6 +4,7 @@
 /*
 
 !/.gitignore
+!/AGENTS.md
 !/.aerospace.toml
 !/fish/
 !/herdr/
