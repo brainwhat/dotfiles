@@ -1,5 +1,14 @@
 # Dotfiles agent instructions
 
+## Apply VPS changes to every configured user
+
+For every task that changes, installs, deploys, validates, or reloads software
+or configuration on a VPS, first inspect the local SSH configuration and
+enumerate every SSH alias and user for that VPS. Apply and validate the
+requested change for every configured user unless the user explicitly limits
+the scope. Do not assume that aliases or users documented in this repository
+are exhaustive; discover them again for every task.
+
 ## Publish and deploy tracked configuration changes
 
 Whenever an agent changes a configuration file that is already tracked by this
@@ -12,19 +21,19 @@ change unless the user explicitly says not to:
 3. Stage only the files changed for the current task and create a descriptive
    commit on the current branch.
 4. Push the commit to `origin`.
-5. Pull it into both VPS clones with rebase and autostash so machine-local
-   changes survive:
+5. Enumerate every SSH alias and user for the affected VPS from the local SSH
+   configuration, then pull into every corresponding clone with rebase and
+   autostash so account-local changes survive:
 
    ```sh
-   ssh AlphaVPS4G_cookit 'git -C ~/.dotfiles pull --rebase --autostash'
-   ssh AlphaVPS4G_vstack 'git -C ~/.dotfiles pull --rebase --autostash'
+   ssh <vps-user-alias> 'git -C ~/.dotfiles pull --rebase --autostash'
    ```
 
-6. Verify that both pulls reached the pushed commit and that pre-existing dirty
+6. Verify that every pull reached the pushed commit and that pre-existing dirty
    files remain present.
 7. If the affected program supports safe live reload, validate and reload it on
-   every affected machine. Otherwise, clearly state whether a new shell, tab,
-   session, or process is required.
+   every affected account and machine. Otherwise, clearly state whether a new
+   shell, tab, session, or process is required.
 
 If a push, pull, autostash restoration, validation, or reload fails, stop and
 report the exact failure. Do not force-push, reset, or overwrite local changes.
