@@ -59,3 +59,7 @@ if status is-interactive
         zoxide init fish | source
     end
 end
+
+if status is-interactive
+    atuin init fish --disable-up-arrow | source
+end
