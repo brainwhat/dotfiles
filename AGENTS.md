@@ -20,14 +20,23 @@ This repository is chezmoi source state. The standard source directory is
   of the source directory. Remember that chezmoi reads untracked source files
   too; archive or ignore machine-local files before applying.
 
-## Apply VPS changes to every configured user
+## Remote access scope
+
+Only access remote machines through SSH aliases whose configured alias matches
+`AlphaVPS*`. Do not connect to any other SSH alias, hostname, or address unless
+the user explicitly expands the scope in the current task. This restriction
+applies to inspection, installation, deployment, validation, reloads, and all
+other remote commands.
+
+## Apply AlphaVPS changes to every configured user
 
 For every task that changes, installs, deploys, validates, or reloads software
-or configuration on a VPS, first inspect the local SSH configuration and
-enumerate every SSH alias and user for that VPS. Apply and validate the
-requested change for every configured user unless the user explicitly limits
-the scope. Do not assume that aliases or users documented in this repository
-are exhaustive; discover them again for every task.
+or configuration on an AlphaVPS machine, first inspect the local SSH
+configuration and enumerate every matching `AlphaVPS*` alias and user for that
+machine. Apply and validate the requested change for every matching configured
+user unless the user explicitly limits the scope. Do not assume that aliases or
+users documented in this repository are exhaustive; discover them again for
+every task without accessing aliases outside the permitted pattern.
 
 ## Publish and deploy tracked configuration changes
 
@@ -43,9 +52,10 @@ user explicitly says not to:
 3. Stage only the source files changed for the task and create a descriptive
    commit on the current branch.
 4. Push the commit to `origin`.
-5. Enumerate every SSH alias and user for the affected VPS from the local SSH
-   configuration. On every account, first record source and destination state,
-   then pull without applying so destination changes can be reviewed:
+5. Enumerate every permitted `AlphaVPS*` SSH alias and user for the affected
+   machine from the local SSH configuration. Do not access aliases outside that
+   pattern. On every matching account, first record source and destination
+   state, then pull without applying so destination changes can be reviewed:
 
    ```sh
    ssh <vps-user-alias> 'chezmoi git pull -- --rebase --autostash'
