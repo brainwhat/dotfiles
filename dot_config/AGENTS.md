@@ -22,21 +22,20 @@ This repository is chezmoi source state. The standard source directory is
 
 ## Remote access scope
 
-Only access remote machines through SSH aliases whose configured alias matches
-`AlphaVPS*`. Do not connect to any other SSH alias, hostname, or address unless
-the user explicitly expands the scope in the current task. This restriction
-applies to inspection, installation, deployment, validation, reloads, and all
-other remote commands.
+Only access the remote machine through the exact SSH alias `ITGlobal_dev`,
+configured for user `admin`. Do not connect through any other SSH alias,
+hostname, or address unless the user explicitly expands the scope in the
+current task. This restriction applies to inspection, installation, deployment,
+validation, reloads, and all other remote commands.
 
-## Apply AlphaVPS changes to every configured user
+## Apply ITGlobal_dev changes as admin
 
 For every task that changes, installs, deploys, validates, or reloads software
-or configuration on an AlphaVPS machine, first inspect the local SSH
-configuration and enumerate every matching `AlphaVPS*` alias and user for that
-machine. Apply and validate the requested change for every matching configured
-user unless the user explicitly limits the scope. Do not assume that aliases or
-users documented in this repository are exhaustive; discover them again for
-every task without accessing aliases outside the permitted pattern.
+or configuration on `ITGlobal_dev`, first inspect the local SSH configuration
+and confirm that the alias is configured for user `admin`. Apply and validate
+the requested change through that alias unless the user explicitly changes the
+scope. If the alias no longer resolves to user `admin`, stop and report the
+mismatch without connecting.
 
 ## Publish and deploy tracked configuration changes
 
@@ -52,14 +51,14 @@ user explicitly says not to:
 3. Stage only the source files changed for the task and create a descriptive
    commit on the current branch.
 4. Push the commit to `origin`.
-5. Enumerate every permitted `AlphaVPS*` SSH alias and user for the affected
-   machine from the local SSH configuration. Do not access aliases outside that
-   pattern. On every matching account, first record source and destination
-   state, then pull without applying so destination changes can be reviewed:
+5. Inspect the permitted `ITGlobal_dev` alias in the local SSH configuration
+   and confirm that its configured user is `admin`. Do not access any other
+   alias. On that account, first record source and destination state, then pull
+   without applying so destination changes can be reviewed:
 
    ```sh
-   ssh <vps-user-alias> 'chezmoi git pull -- --rebase --autostash'
-   ssh <vps-user-alias> 'chezmoi diff --no-pager'
+   ssh ITGlobal_dev 'chezmoi git pull -- --rebase --autostash'
+   ssh ITGlobal_dev 'chezmoi diff --no-pager'
    ```
 
 6. Confirm that each source clone reached the pushed commit and that every
@@ -69,12 +68,12 @@ user explicitly says not to:
 7. Validate the rendered remote configuration, then apply and verify it:
 
    ```sh
-   ssh <vps-user-alias> 'chezmoi apply && chezmoi verify'
+   ssh ITGlobal_dev 'chezmoi apply && chezmoi verify'
    ```
 
 8. If the affected program supports safe live reload, validate and reload it
-   on every affected account and machine. Otherwise, clearly state whether a
-   new shell, tab, session, or process is required.
+   on `ITGlobal_dev`. Otherwise, clearly state whether a new shell, tab,
+   session, or process is required.
 
 If a push, pull, autostash restoration, validation, apply, verification, or
 reload fails, stop and report the exact failure. Do not force-push, reset, or
